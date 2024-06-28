@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      background-color:rgb(237, 187, 235);
+    }
+    #productTable{
+      border:1px solid black;
+      border-collapse: collapse;
+     
+    }
+    td{
+      padding:5px;
+    }
+  
+
+  
+  </style>
+  <script>
+    function TotalAmount()
+    {
+      const code=document.getElementById("pcode").value;
+      var name=document.getElementById("pname").value;
+      let price=document.getElementById("pprice").value;
+      let quantity=document.getElementById("pquantity").value;
+       let amount=price * quantity;
+      document.getElementById("pamount").value=amount.toFixed(2);
+      var table=document.getElementById("productTable");
+            var newRow = table.insertRow();
+            
+            var cellCode = newRow.insertCell(0);
+            cellCode.innerHTML = code;
+            
+            var cellName = newRow.insertCell(1);
+            cellName.innerHTML = name;
+        
+            var cellPrice = newRow.insertCell(2);
+            cellPrice.innerHTML = price;
+
+            var cellQuantity = newRow.insertCell(3);
+            cellQuantity.innerHTML = quantity;
+
+            var cellAmount = newRow.insertCell(4);
+            cellAmount.innerHTML = amount.toFixed(2);
+
+    }
+          
+            
+      function calculateTotal(){
+       let table=document.getElementById("productTable");
+        let totalAmount=0;
+        let rowCount=table.rows.length;
+        let i=1;
+        while(i<rowCount){
+        let row = table.rows[i];
+        let cellAmount=parseFloat(row.cells[4].innerHTML);
+        totalAmount=cellAmount+totalAmount;
+        i++;
+
+        }
+        document.getElementById("totalAmount").innerHTML=totalAmount.toFixed(2);
+      }
+      function selectCategoryAndPayment() {
+  // Get the selected category and payment mode from the dropdowns
+  const category = document.getElementById("category").value;
+  const paymentMode = document.getElementById("paymentMode").value;
+
+  let message = "Selected Category: ";
+  let paymentMessage = "Selected Payment Mode: ";
+
+  // Use switch case to handle different categories and payment modes
+  switch (category) {
+    case "Shirts":
+      message += "Shirts";
+      break;
+    case "Saree":
+      message += "Saree";
+      break;
+    case "Shoes":
+      message += "Shoes";
+      break;
+   case "dress":
+      message += "Dresses";
+      break;
+    default:
+      message = "Please select a category.";
+      break;
+  }
+
+  // Handle payment mode selection
+  switch (paymentMode) {
+    case "creditCard":
+      paymentMessage += "Credit Card";
+      break;
+    case "debitCard":
+      paymentMessage += "Debit Card";
+      break;
+    case "paypal":
+      paymentMessage += "PayPal";
+      break;
+    case "bankTransfer":
+      paymentMessage += "Bank Transfer";
+      break;
+    case "cashOnDelivery":
+      paymentMessage += "cashOnDelivery";
+      break;
+      case "select":
+      paymentMessage += "select";
+      break;
+    default:
+      paymentMessage = "Please select a payment mode.";
+      break;
+  }
+
+  // Display the selected category and payment mode messages
+  document.getElementById("selectionMessage").textContent = `${message} | ${paymentMessage}`;
+}
+
+    
+   
+
+    
+  </script>
+</head>
+<body>
+  <div id="c1">
+    <center>
+      <table>
+        <h1>Products <select id="category">
+          <option value="Shirts">Shirts</option>
+          <option value="Saree">Saree</option>
+          <option value="Shoes">Shoes</option>
+          <option value="dress">Dresses</option>
+          <option value="choose">Select an option</option>
+         
+        </select></h1>
+        <hr style="width:300px;">
+
+        <tr>
+          <td>Product code:</td>
+          <td><input style="padding: 5px;" id="pcode"type="number"></td>
+         
+        </tr>
+       
+        <tr>
+          <td>Product Name:</td>
+          <td><input style="padding: 5px;"id="pname" type="text"></td>
+         
+        </tr>
+        <tr>
+          <td>Product Price:</td>
+          <td><input style="padding: 5px;" id="pprice" type="number"></td>
+          
+        </tr>
+        <tr>
+          <td>Quantity:</td>
+          <td><input style="padding: 5px;" id="pquantity" type="number"></td>
+          
+        </tr>
+        <tr>
+          <td>Amount:</td>
+          <td><input style="padding: 5px;"id="pamount"type="number"></td>
+         
+        </tr>
+        <tr>
+          <td><input id="calculate"type="button" value="Calculate" onclick="TotalAmount()" style="background-color: black;color:azure"></td>
+        </tr>   
+        
+      </table>
+  
+      <table id="productTable" border="1px  black" style="margin-left: 10px; margin-top: 50px;">
+        <tr>
+            <th style="padding: 5px;">Product code</th>
+          
+            <th style="padding: 5px;">Product Name</th>
+            <th style="padding: 5px;">Price</th>
+            <th style="padding: 5px;">Product Quantity </th>
+           
+             <th id="pamount" style="padding: 5px;">Amount</th>
+           
+        </tr>
+    </table>
+    
+     <div>
+      <button type="button" onclick="calculateTotal()" style="background-color: black;color:azure;margin-top: 10px;">Total Amount</button>
+    </div>
+    
+    <select id="paymentMode" style="margin: 20px;">
+      <option value="creditCard">Credit Card</option>
+      <option value="debitCard">Debit Card</option>
+      <option value="paypal">PayPal</option>
+      <option value="bankTransfer">Bank Transfer</option>
+      <option value="select">select</option>
+      <!-- Add more payment modes as needed -->
+    </select>
+    <button onclick="selectCategoryAndPayment()" style="background-color: black;color:aliceblue;">Submit</button>
+    <p id="selectionMessage"></p>
+     
+    </center>
+    
+
+  </div>
+
+  
+</body>
+</html>
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Selection</title>
+<script>
+  function showPaymentOptions() {
+  var category = document.getElementById("categorySelect").value;
+  var paymentDiv = document.getElementById("paymentOptions");
+
+  if (category !== "") {
+    paymentDiv.style.display = "block";
+  } else {
+    paymentDiv.style.display = "none";
+  }
+}
+
+function submitOrder() {
+  var category = document.getElementById("categorySelect").value;
+  var payment = document.querySelector('input[name="payment"]:checked');
+
+  var orderSummary = document.getElementById("orderSummary");
+  orderSummary.innerHTML = "";
+
+  switch (category) {
+    case "electronics":
+      orderSummary.innerHTML += "<p>Category: Electronics</p>";
+      break;
+    case "clothing":
+      orderSummary.innerHTML += "<p>Category: Clothing</p>";
+      break;
+    case "books":
+      orderSummary.innerHTML += "<p>Category: Books</p>";
+      break;
+    default:
+      orderSummary.innerHTML += "<p>Please select a category.</p>";
+      break;
+  }
+
+  if (payment) {
+    orderSummary.innerHTML += "<p>Payment Method: " + payment.value + "</p>";
+  } else {
+    orderSummary.innerHTML += "<p>Please select a payment method.</p>";
+  }
+}
+
+</script>
+</head>
+<body>
+  <h1>Select a Category</h1>
+  <select id="categorySelect" onchange="showPaymentOptions()">
+    <option value="">Select Category</option>
+    <option value="electronics">Electronics</option>
+    <option value="clothing">Clothing</option>
+    <option value="books">Books</option>
+  </select>
+
+  <div id="paymentOptions" style="display: none;">
+    <h2>Payment Options</h2>
+    <input type="radio" id="creditCard" name="payment" value="credit">
+    <label for="creditCard">Credit Card</label><br>
+    <input type="radio" id="debitCard" name="payment" value="debit">
+    <label for="debitCard">Debit Card</label><br>
+    <input type="radio" id="paypal" name="payment" value="paypal">
+    <label for="paypal">PayPal</label><br>
+  </div>
+
+  <button onclick="submitOrder()">Submit Order</button>
+
+  <div id="orderSummary"></div>
+
+ 
+</body>
+</html>

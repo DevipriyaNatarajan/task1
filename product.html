@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .flex-container{
+      display:flex;
+      flex-direction: row;
+     margin-left: 50px;
+      column-gap: 40px;
+    
+    }
+  </style>
+<script>
+  function amountcalculate(code,name,price)
+  {
+   /*var code=document.getElementById("pcode").value;
+    var name=document.getElementById("pname").value;
+    var quantity=document.getElementById("pquantity").value;
+   var price=document.getElementById("pprice").value;*/
+
+    if((price=="")&&(quantity=="") )
+    {
+     
+     alert("retry");
+    }
+    else{
+      var total=price*quantity;
+     alert("The total amount is"+total.toFixed(2));
+    }
+  }
+</script>
+
+
+</head>
+<body>
+<center><h1>Products</h1></center>
+<div class="flex-container">
+  <div>
+    <a href=""> <img src="https://source.unsplash.com/random/200x200/?Black shirt" alt=""> </a>
+    <p>Black Shirt</p>
+  </div>
+  <div>
+    <a href=""> <img src="https://source.unsplash.com/random/200x200/?white shirt" alt=""></a>
+    <p>White Shirt</p>
+  </div>
+  <div>
+    <a href=""> <img src="https://source.unsplash.com/random/200x200/?Blue shirt" alt=""></a>
+    <p>Blue Shirt</p>
+  </div>
+  <div>
+    <a href=""> <img src="https://source.unsplash.com/random/200x200/?shoes" alt=""></a>
+    <p>Shoe</p>
+  </div>
+  <div>
+    <a href=""> <img src="https://source.unsplash.com/random/200x200/?Watches" alt=""></a>
+    <p>Watch</p>
+  </div>
+</div>
+
+
+ 
+  
+</body>
+</html>
+

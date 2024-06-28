@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Information</title>
+    <style>
+        .flex-container{
+          display:flex;
+          flex-direction: row;
+         margin-left: 150px;
+          column-gap: 40px;
+        
+        }
+      </style>
+    <script>
+        function addProductToTable(code, name, price,quantity,Amounttotal) {
+            var quantity = document.getElementById("quantity" + code).value;
+            var total=price*quantity;
+            var table=document.getElementById("productTable");
+            var newRow = table.insertRow();
+            
+            var cellCode = newRow.insertCell(0);
+            cellCode.innerHTML = code;
+            
+            var cellName = newRow.insertCell(1);
+            cellName.innerHTML = name;
+        
+            var cellPrice = newRow.insertCell(2);
+            cellPrice.innerHTML = price;
+            var cellQuantity = newRow.insertCell(3);
+            cellQuantity.innerHTML = quantity;
+            var cellAmounttotal = newRow.insertCell(4);
+         
+            cellAmounttotal.innerHTML = total.toFixed(2);
+            
+        }
+                  
+      function calculateTotal(){
+       let table=document.getElementById("productTable");
+        let totalAmount=0;
+        let rowCount=table.rows.length;
+        let i=1;
+        while(i<rowCount){
+        let row = table.rows[i];
+        let cellAmount=parseFloat(row.cells[4].innerHTML);
+        totalAmount+=cellAmount;
+        i++;
+
+        }
+        document.getElementById("totalAmount").innerHTML=totalAmount.toFixed(2);
+      }
+      function selectCategoryAndPayment() {
+  // Get the selected category and payment mode from the dropdowns
+  const category = document.getElementById("category").value;
+  const paymentMode = document.getElementById("paymentMode").value;
+
+  let message = "Selected Category: ";
+  let paymentMessage = "Selected Payment Mode: ";
+
+  // Use switch case to handle different categories and payment modes
+  switch (category) {
+    case "Shirts":
+      message += "Shirts";
+      break;
+    case "Saree":
+      message += "Saree";
+      break;
+    case "Shoes":
+      message += "Shoes";
+      break;
+   case "dress":
+      message += "Dresses";
+      break;
+    default:
+      message = "Please select a category.";
+      break;
+  }
+
+  // Handle payment mode selection
+  switch (paymentMode) {
+    case "creditCard":
+      paymentMessage += "Credit Card";
+      break;
+    case "debitCard":
+      paymentMessage += "Debit Card";
+      break;
+    case "paypal":
+      paymentMessage += "PayPal";
+      break;
+    case "bankTransfer":
+      paymentMessage += "Bank Transfer";
+      break;
+    case "cashOnDelivery":
+      paymentMessage += "cashOnDelivery";
+      break;
+      case "select":
+      paymentMessage += "select";
+      break;
+    default:
+      paymentMessage = "Please select a payment mode.";
+      break;
+  }
+
+  // Display the selected category and payment mode messages
+  document.getElementById("selectionMessage").textContent = `${message} | ${paymentMessage}`;
+}
+
+
+  
+    </script>
+</head>
+<body>
+    <center>
+        <div style="background-color: beige;padding: 5px;margin-bottom: 20px;"><h1>Products  <select id="category">
+          <option value="Shirts">Shirts</option>
+          <option value="Saree">Saree</option>
+          <option value="Shoes">Shoes</option>
+          <option value="dress">Dresses</option>
+          <option value="choose">Select an option</option>
+         
+        </select></h1>   
+        </center>         
+       
+  
+
+        </div>
+        
+   
+    <div class="flex-container">
+        <div>
+            <img src="https://source.unsplash.com/random/200x200/?Black shirt"  alt="Product Image"><br>
+            <input type="number" id="quantityED3" value="1" min="1" style="width:40px;">
+            <p>Black Shirt</p>
+            <p>₹500</p>
+
+            <button onclick="addProductToTable('ED3', 'Black Shirt','500')" style="background-color: black;color:azure">BUY N0W</button>
+        </div>
+        <div>
+          <a > <img src="https://source.unsplash.com/random/200x200/?white shirt"  alt="Product Image"></a><br>
+          <input type="number" id="quantityED4" value="1" min="1" style="width:40px;" >
+          <p>White Shirt</p>
+          <p>₹700</p>
+          <button onclick="addProductToTable('ED4', 'White Shirt','700')" style="background-color: black;color:azure">BUY N0W</button>
+        </div>
+        <div>
+          <a> <img src="https://source.unsplash.com/random/200x200/?Blue shirt"  alt="Product Image"></a><br>
+          <input type="number" id="quantityED5" value="1" min="1" style="width:40px;" >
+          <p>Blue Shirt</p>
+          <p>₹900</p>
+          <button onclick="addProductToTable('ED5', 'Blue Shirt','900')" style="background-color: black;color:azure">BUY N0W</button>
+        </div>
+        <div>
+          <a > <img src="https://source.unsplash.com/random/200x200/?shoes" alt="Product Image"></a><br>
+          <input type="number" id="quantityED6" value="1" min="1" style="width:40px;" >
+          <p>Shoe</p>
+          <p>₹1200</p>
+          <button onclick="addProductToTable('ED6', 'Shoe','1200')" style="background-color: black;color:azure">BUY N0W</button>
+        </div>
+      
+
+    </div>
+   
+    
+    <table id="productTable" border="1px" style="margin-left: 350px;margin-top: 30px;">
+        <tr>
+            <th>Product code</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Product Quantity </th>
+            <th>Amount_total</th>
+        </tr>
+    </table>
+    <div>
+      <center>
+        <button type="button" onclick="calculateTotal()" style="background-color: black;color:azure;margin-top: 10px;">Total Amount</button>
+      </div>
+      <div style="margin-top: 10px; padding-left: 600px;" id="totalAmount"> ₹0.00 </div>
+      <select id="paymentMode" style="margin-left: 500px;">
+        <option value="creditCard">Credit Card</option>
+        <option value="debitCard">Debit Card</option>
+        <option value="paypal">PayPal</option>
+        <option value="bankTransfer">Bank Transfer</option>
+        <option value="select">select</option>
+        <!-- Add more payment modes as needed -->
+      </select>
+      <button onclick="selectCategoryAndPayment()" style="background-color: black;color:aliceblue;">Submit</button>
+      <p id="selectionMessage"></p>
+      </center>
+     
+</body>
+</html>
+
+

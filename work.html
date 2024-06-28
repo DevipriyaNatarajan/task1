@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  function calculate()
+  {
+    code=document.getElementById("pcode").value;
+    name=document.getElementById("pname").value;
+    price=document.getElementById("pprice").value;
+    quantity=document.getElementById("pquantity").value;
+    amount=price*quantity;
+    document.getElementById("pamount").value=amount;
+  
+   var table=document.getElementById("tablerow");
+     var newRow = table.insertRow();
+     var cellCode=newRow.insertCell(0);
+     cellCode.innerHTML=code;
+     var cellName=newRow.insertCell(1);
+     cellName.innerHTML=name;
+     var cellPrice=newRow.insertCell(2);
+     cellPrice.innerHTML=price;
+     var cellQuantity=newRow.insertCell(3);
+     cellQuantity.innerHTML=quantity;
+     var cellAmount=newRow.insertCell(4);
+     cellAmount.innerHTML=amount;
+
+  }
+  function caltotal(){
+    var table=document.getElementById("tablerow");
+    let totalAmount=0;
+    let rowCount=table.rows.length;
+    let i=1;
+    while(i<rowCount){
+      let row=table.rows[i];
+      let cellAmount=parseFloat(row.cells[4].innerHTML);
+      totalAmount+=cellAmount;
+      i++
+    }
+    document.getElementById("totalamt").innerHTML=totalAmount.toFixed(2);
+  }
+
+</script>
+
+
+
+<body>
+
+  <table>
+    <tr>
+      <td>CODE:</td>
+      <td><input type="number" id="pcode"></td>
+      
+    </tr>
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" id="pname"></td>
+      
+    </tr>
+    <tr>
+      <td>PRICE:</td>
+      <td><input type="number" id="pprice"></td>
+      
+    </tr>
+    <tr>
+      <td>QUANTITY:</td>
+      <td><input type="number" id="pquantity"></td>
+      
+    </tr>
+    <tr>
+      <td>AMOUNT:</td>
+      <td><input type="number" id="pamount"></td>
+      
+    </tr>
+    <tr>
+      <td><input type="button" value="total" onclick="calculate()"> </tr>
+  </table>
+
+  <table id="tablerow">
+    <tr>
+     <th>code</th>
+     <th>name</th>
+     <th>price</th>
+     <th>quantity</th>
+     <th>amount</th>
+    </tr>
+  </table>
+  <div><button id="totalamt" value="amount" onclick="caltotal()">Total</button></div>
+  <div id="calculate">$0.00</div>
+  
+</body>
+</html>
+
